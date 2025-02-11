@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Button } from "../UI/Button";
 import { FaFacebook, FaInstagramSquare, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
@@ -6,16 +8,43 @@ import Image from "next/image";
 import logo from "@/assets/Logo/LODIM11A.png";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("");
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setEmail(""); // Clear input after success
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error("Subscription error:", error);
+      setStatus("error");
+    }
+  };
+
   return (
     <section className="bg-black pt-[3rem] w-screen">
       <div className="container flex flex-col-reverse md:flex-row justify-between items-center py-8 gap-4">
+        {/* Left Side */}
         <div className="text-brand-ash pt-6 md:pt-0 text-left w-full md:w-1/2 flex gap-8">
           <div className="flex-col gap-4 flex items-center justify-center">
             <Link href="/">
               <div className="flex-row gap-4">
                 <Image
                   src={logo}
-                  alt=""
+                  alt="Logo"
                   width={80}
                   height={80}
                   className="mx-auto"
@@ -31,41 +60,60 @@ const Footer = () => {
           </div>
           <div className="mx-auto lg:mx-0 text-center">
             <p className="font-semibold">Feel free to reach us on:</p>
-            <p className="text-sm">+2347035339853, +2348084272971</p>
-            <p>lodimservices@gmail.com</p>
+            <p className="text-sm">
+              +2347035339853, +2347040011584, +2347040307014
+            </p>
+            <p>contactus@lodimgs.com</p>
             <div className="flex flex-col gap-2 pt-4 items-center">
               <div className="flex gap-4">
-                <p>
+                <Link href={"https://www.instagram.com"} target="_blank">
                   <FaInstagramSquare />
-                </p>
-                <p>
+                </Link>
+                <Link href={""} target="_blank">
                   <FaLinkedin />
-                </p>
-                <p>
+                </Link>
+                <Link href={"https://www.facebook.com"} target="_blank">
                   <FaFacebook />
-                </p>
+                </Link>
               </div>
               <p className="font-bold text-base">LODIM Global Services</p>
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2 ">
+
+        {/* Right Side - Subscription */}
+        <div className="w-full md:w-1/2">
           <p className="font-bold text-lg uppercase text-brand-ash">
             Subscribe
           </p>
           <div className="text-brand-ash">
-            <form action="">
-              <label htmlFor="name" className="text-base block mb-2">
+            <form onSubmit={handleSubscribe}>
+              <label htmlFor="email" className="text-base block mb-2">
                 Email Address
               </label>
               <input
-                type="text"
-                id="name"
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter Your Email Address"
                 className="w-full p-4 border border-brand-ash focus:border-brand rounded-2xl mb-4 placeholder-brand-bg bg-inherit text-xs"
+                required
               />
-              <Button variant={"default"}>Subscribe</Button>
+              <Button
+                type="submit"
+                variant="default"
+                disabled={status === "loading"}
+              >
+                {status === "loading" ? "Subscribing..." : "Subscribe"}
+              </Button>
             </form>
+            {status === "success" && (
+              <p className="text-green-500 mt-2">Subscription successful!</p>
+            )}
+            {status === "error" && (
+              <p className="text-red-500 mt-2">Error subscribing. Try again.</p>
+            )}
           </div>
         </div>
       </div>

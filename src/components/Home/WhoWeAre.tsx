@@ -1,11 +1,11 @@
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 import developer from "@/assets/Home/WhoWeAre/developer.png";
-import technologies from "@/assets/Home/WhoWeAre/technologies.png";
+import technologies from "@/assets/Home/WhoWeAre/languagesssss.png";
 
 const WhoWeAre = () => {
   return (
-    <section className="pt-[3rem] pb-[5rem] bg-gray-500 bg-opacity-30 dark:bg-opacity-10">
+    <section className="mt-[3rem] pt-[3rem] pb-[5rem] bg-gray-500 bg-opacity-30 dark:bg-opacity-10">
       <div className="container">
         <div className="flex gap-2 lg:gap-4 font-bold">
           <p className="text-2xl lg:text-6xl">Who</p>
@@ -65,7 +65,7 @@ const DETAILS: Array<OurInfo> = [
       start: "What do we ",
       end: " do",
     },
-    desc: "We are proficient in the use of powerful software development, database management, and data analysis tools which include: C#, ASP.NET, Microsoft SQL, Power BI, Java, Spring Boot, and React Native. We use these technologies to craft innovative solutions, tailor made to meet whatever needs our clients may have in the digital space.",
+    desc: "We are proficient in the use of powerful software development, database management, and data analysis tools which include: C#, ASP.NET, Microsoft SQL, Power BI, Java, Spring Boot, React, Typescript, Next.js, Tailwind CSS, Bootstrap CSS and React Native. We use these technologies to craft innovative solutions, tailor made to meet whatever needs our clients may have in the digital space.",
     srcImage: technologies,
   },
 ];

@@ -27,7 +27,7 @@ const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative flex items-center bg-gradient-to-b from-blue-400 via-gray-200 to-white dark:from-gray-800 dark:via-gray-900 dark:to-background h-screen"
+      className="mb-[3rem] relative flex items-center bg-gradient-to-b from-blue-400 via-gray-200 to-white dark:from-gray-800 dark:via-gray-900 dark:to-background h-screen"
     >
       <div className="w-full flex flex-col items-center px-6 pt-24 lg:pt-48 max-w-screen-lg mx-auto">
         <p id="hero" className="hero-title pb-4">
@@ -108,15 +108,30 @@ const Hero = () => {
             {/* <InstagramIcon />
             <FacebookIcon />
             <TwitterIcon /> */}
-            <p className="hover:text-brand">
+            <Link
+              href={"https://www.instagram.com"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand"
+            >
               <FaInstagram />
-            </p>
-            <p className="hover:text-brand">
+            </Link>
+            <Link
+              href={""}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand"
+            >
               <FaLinkedin />
-            </p>
-            <p className="hover:text-brand">
+            </Link>
+            <Link
+              href={"https://www.facebook.com"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand"
+            >
               <FaFacebook />
-            </p>
+            </Link>
           </div>
         </div>
       </div>
